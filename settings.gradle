@@ -1,0 +1,6 @@
+rootProject.name = 'loadBalance'
+include 'module_auth'
+include 'module_eureka_discovery'
+include 'module_userInfo'
+include 'module_zuul_gateway'
+include 'module_oauth2'

@@ -1,0 +1,104 @@
+buildscript {
+	ext {
+		set('springCloudVersion', "Hoxton.RELEASE")
+		set('springBootVersion', '2.3.8.RELEASE')
+	}
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath "org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}"
+		classpath "io.spring.gradle:dependency-management-plugin:1.0.9.RELEASE"
+	}
+}
+
+
+// 하위 모든 프로젝트 공통 세팅
+subprojects {
+
+	apply plugin: 'java'
+	apply plugin: 'idea'
+	apply plugin: 'org.springframework.boot'
+	apply plugin: 'io.spring.dependency-management'
+
+	group 'org.example'
+	version '1.0-SNAPSHOT'
+
+	sourceCompatibility = '11'
+	compileJava.options.encoding = 'UTF-8'
+
+	repositories {
+		mavenCentral()
+	}
+
+	// 하위 모듈에서 공통으로 사용하는 세팅 추가
+	dependencies {
+		compileOnly 'org.projectlombok:lombok'
+
+		//jdk 11 추가
+		implementation 'javax.xml.bind:jaxb-api:2.3.1'
+		implementation 'com.sun.xml.bind:jaxb-impl:2.3.5'
+
+		implementation 'org.springframework.boot:spring-boot-starter-web'
+		implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
+
+		annotationProcessor 'org.projectlombok:lombok'
+		annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
+
+		testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+		testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+	}
+
+	test {
+		useJUnitPlatform()
+	}
+
+	dependencyManagement {
+		imports {
+			mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+		}
+	}
+
+}
+
+project(':module_auth') {
+
+	dependencies {
+		implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+		implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
+		implementation 'mysql:mysql-connector-java'
+
+	}
+}
+
+project(':module_eureka_discovery') {
+
+	dependencies {
+		implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-server'
+	}
+}
+
+project(":module_userInfo") {
+
+	dependencies {
+		implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+		implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
+		implementation 'mysql:mysql-connector-java'
+	}
+}
+
+project(":module_zuul_gateway") {
+
+	dependencies {
+		implementation 'org.springframework.cloud:spring-cloud-starter-netflix-zuul:2.2.9.RELEASE'
+	}
+}
+
+project(":module_oauth2") {
+
+	dependencies {
+		implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+		implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
+		implementation 'mysql:mysql-connector-java'
+	}
+}
