@@ -5,8 +5,8 @@ spring:
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
     username: root
-    password: fifqdk135
-    url: jdbc:mysql://localhost:3306/GraduationDB?useSSL=false&&allowPublicKeyRetrieval=true&useUnicode=true&serverTimezone=Asia/Seoul
+    password:
+    url: jdbc:mysql://localhost:3306/LoadBalancingDB?useSSL=false&&allowPublicKeyRetrieval=true&useUnicode=true&serverTimezone=Asia/Seoul
 
   application:
     name: userInfo-module
