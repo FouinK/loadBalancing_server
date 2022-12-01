@@ -67,10 +67,24 @@ subprojects {
 project(':module_auth') {
 
 	dependencies {
+		//jwt gradle 추가
+		implementation 'io.jsonwebtoken:jjwt:0.9.1'
+		implementation 'com.auth0:java-jwt:4.0.0'
+
+		implementation 'org.springframework.boot:spring-boot-starter-security'
 		implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 		implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
 		implementation 'mysql:mysql-connector-java'
 
+	}
+}
+
+project(":module_oauth2") {
+
+	dependencies {
+		implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+		implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
+		implementation 'mysql:mysql-connector-java'
 	}
 }
 
@@ -97,11 +111,14 @@ project(":module_zuul_gateway") {
 	}
 }
 
-project(":module_oauth2") {
+project(':module_authBeta') {
 
 	dependencies {
-		implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-		implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
-		implementation 'mysql:mysql-connector-java'
+		//jwt gradle 추가
+		implementation 'io.jsonwebtoken:jjwt:0.9.1'
+		implementation 'com.auth0:java-jwt:4.0.0'
+
+		implementation 'org.springframework.boot:spring-boot-starter-security'
+
 	}
 }

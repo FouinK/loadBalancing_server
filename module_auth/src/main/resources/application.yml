@@ -8,9 +8,17 @@ spring:
     password: root
     url: jdbc:mysql://localhost:3306/LoadBalancingDB?useSSL=false&&allowPublicKeyRetrieval=true&useUnicode=true&serverTimezone=Asia/Seoul
 
+
+  #  security:
+#    user:
+#      name: user
+#      password: 1234
   application:
     name: auth-module
-
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: create
 eureka:
   client:
     register-with-eureka: true
