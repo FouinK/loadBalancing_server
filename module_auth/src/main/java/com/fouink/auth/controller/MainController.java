@@ -1,11 +1,10 @@
-package com.fouink.userinfo.controller;
+package com.fouink.auth.controller;
 
-import com.fouink.userinfo.dto.UserJoinRequestApi;
-import com.fouink.userinfo.entity.UserInfo;
-import com.fouink.userinfo.service.UserService;
+import com.fouink.auth.dto.UserJoinRequestApi;
+import com.fouink.auth.entity.UserInfo;
+import com.fouink.auth.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;

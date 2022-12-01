@@ -1,8 +1,9 @@
-package com.fouink.userinfo.service;
+package com.fouink.auth.service;
 
-import com.fouink.userinfo.dto.UserJoinRequestApi;
-import com.fouink.userinfo.entity.UserInfo;
-import com.fouink.userinfo.respository.UserRepository;
+
+import com.fouink.auth.dto.UserJoinRequestApi;
+import com.fouink.auth.entity.UserInfo;
+import com.fouink.auth.respository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
