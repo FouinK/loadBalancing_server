@@ -4,7 +4,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fouink.auth.auth.PrincipalDetails;
 import com.fouink.auth.auth.Token;
 import com.fouink.auth.dto.UserJoinRequestApi;
-import com.fouink.auth.entity.UserInfo;
 import com.fouink.auth.service.TokenService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -59,14 +58,15 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     @Override
     protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain, Authentication authResult) throws IOException, ServletException {
 
-        System.out.println("successfulAuthentication 실행됨 = 인증이 완료 되었다는 뜻");
+        System.out.println("successfulAuthentication 실행됨 = 인증이 완료");
 
         PrincipalDetails principalDetails = (PrincipalDetails) authResult.getPrincipal();
 
         Token jwtToken = tokenService.generateToken(principalDetails.getUserInfo().getId(),"USER");
+        System.out.println(jwtToken.getToken());
 
-        response.addHeader("Authorization", "Bearer " + jwtToken.getToken());
-        response.addHeader("Refresh", "Bearer "+jwtToken.getRefreshToken());
+        response.addHeader("X-Authorization", "Bearer " + jwtToken.getToken());
+        response.addHeader("X-Refresh", "Bearer "+jwtToken.getRefreshToken());
         response.addHeader("Access-Control-Allow-Origin","http://localhost:3000");
         response.addHeader("Access-Control-Allow-Credentials", String.valueOf(true));
         response.getWriter().write("login response success");

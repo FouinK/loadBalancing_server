@@ -69,7 +69,6 @@ public class TokenServiceImpl implements TokenService {
             log.info("토큰 만료 작동 확인");
             e.printStackTrace();
             return false;
-//            throw new JwtException("토큰 기한 만료");
         }
     }
 
