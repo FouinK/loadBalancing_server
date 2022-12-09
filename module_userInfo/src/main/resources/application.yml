@@ -20,3 +20,6 @@ eureka:
 #  instance:
 #    status-page-url: http://localhost:8100/status
 #    health-check-url-path: http://localhost:8100/health
+
+test:
+ header: good
