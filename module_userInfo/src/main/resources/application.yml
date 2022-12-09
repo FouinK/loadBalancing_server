@@ -11,6 +11,11 @@ spring:
   application:
     name: userInfo-module
 
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: create
+
 eureka:
   client:
     register-with-eureka: true

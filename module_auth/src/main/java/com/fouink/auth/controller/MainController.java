@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
+
 @RestController
 @RequiredArgsConstructor
 public class MainController {
@@ -16,7 +18,8 @@ public class MainController {
     private final UserService userService;
 
     @PostMapping("/join")
-    public ResponseEntity<?> userJoin(@RequestBody UserJoinRequestApi requestApi) {
+    public ResponseEntity<?> userJoin(HttpServletRequest request, @RequestBody UserJoinRequestApi requestApi) {
+        System.out.println(request.getHeader("testHeader"));
 
         UserInfo joinUserInfo = userService.join(requestApi);
 

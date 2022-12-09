@@ -1,12 +1,17 @@
 package com.fouink.userinfo.dto;
 
+import feign.RequestInterceptor;
+import feign.RequestTemplate;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
 
 @Getter
 @Setter
 public class HeaderDto {
-    @Value("${test.header}")
-    private String testHeader;
+    @Bean
+    public RequestInterceptor requestInterceptor() {
+        return requestTemplate ->
+                requestTemplate.header("testHeader", "good");
+    }
 }
